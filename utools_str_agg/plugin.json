@@ -1,0 +1,11 @@
+{
+	"main": "index.html",
+	"logo": "logo.png",
+	"features": [
+		{
+		  "code": "str_sort",
+		  "explain": "字符串处理工具",
+			"cmds":["字符串处理工具", "字符串处理聚合工具"]
+		}
+	]
+}

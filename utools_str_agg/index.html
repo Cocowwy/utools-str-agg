@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="tab active" data-tab="strLineSort">字符串行排序</div>
+    <div class="tab" data-tab="strLineDistinct">字符串行去重</div>
+    <div class="tab" data-tab="strCommaSort">字符串逗号排序</div>
+    <div class="tab" data-tab="strCommaDistinct">字符串逗号去重</div>
+  </div>
+
+  <div class="content" id="content">
+
+  </div>
+
+  <script src="scripts.js"></script>
+
+  <script>
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function () {
+        const target = this.getAttribute('data-tab');
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        loadContent(target);
+      });
+    });
+
+    function loadContent(page) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `pages/${page}.html`, true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          document.getElementById('content').innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send();
+    }
+
+    // 页面加载时自动选中第一个选项并加载内容
+    window.onload = function () {
+      const firstTab = document.querySelector('.tab');
+      if (firstTab) {
+        firstTab.click(); // 触发第一个选项的点击事件
+      }
+    };
+  </script>
+
+
+
+</body>
+
+</html>
